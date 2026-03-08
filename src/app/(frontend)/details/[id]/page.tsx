@@ -1,9 +1,22 @@
 import { getPayload } from 'payload'
 import React from 'react'
+import Image from 'next/image'
 
 import config from '@/payload.config'
 import BackArrow from '@/components/BackArrow/BackArrow'
+import type { Media } from '@/payload-types'
 import './details.css'
+
+interface LexicalTextNode {
+  text?: string
+  children?: LexicalTextNode[]
+}
+
+interface LexicalDescription {
+  root?: {
+    children?: LexicalTextNode[]
+  }
+}
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -26,7 +39,7 @@ export default async function DetailsPage({ params }: PageProps) {
       <div className="detail">
         {artObject && artObject.images ? (
           artObject.images.map((item, index) => {
-            const image = item.image as any
+            const image = item.image as Media
             const mediaUrl = image?.url || ''
             const mimeType = image?.mimeType || ''
             const isVideo = mimeType?.startsWith('video/')
@@ -34,7 +47,7 @@ export default async function DetailsPage({ params }: PageProps) {
             return isVideo ? (
               <video src={mediaUrl} key={index} controls autoPlay loop muted playsInline />
             ) : (
-              <img src={mediaUrl} key={index} alt={`Artwork ${index + 1}`} />
+              <Image src={mediaUrl} key={index} alt={`Artwork ${index + 1}`} width={800} height={600} style={{ width: '100%', height: 'auto' }} />
             )
           })
         ) : (
@@ -47,9 +60,9 @@ export default async function DetailsPage({ params }: PageProps) {
               __html:
                 typeof artObject.description === 'string'
                   ? artObject.description
-                  : (artObject.description as any)?.root?.children
-                      ?.map((child: any) => child.children?.map((c: any) => c.text).join('') || '')
-                      .join('<br/>') || '',
+                  : ((artObject.description as LexicalDescription)?.root?.children
+                       ?.map((child: LexicalTextNode) => child.children?.map((c: LexicalTextNode) => c.text).join('') || '')
+                       .join('<br/>')) || '',
             }}
           />
         )}

@@ -1,0 +1,20 @@
+.aberle-wrapper {
+  padding: 5% 10%;
+  min-height: 100vh;
+  background-color: #efefef;
+}
+.aberle-wrapper h2 {
+  margin-bottom: 10vh;
+}
+.aberle-content p {
+  padding-top: 3vh;
+  text-align: justify;
+}
+.aberle-quotations {
+  margin-top: 10vh;
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.aberle-quotations span {
+  width: 4vw;
+}

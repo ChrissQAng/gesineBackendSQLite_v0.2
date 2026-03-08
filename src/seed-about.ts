@@ -15,16 +15,16 @@ function plainText(text: string) {
         {
           type: 'paragraph',
           children: [{ type: 'text', text, format: 0, detail: 0, mode: 'normal', style: '', version: 1 }],
-          direction: 'ltr',
-          format: '',
+          direction: 'ltr' as const,
+          format: '' as const,
           indent: 0,
           version: 1,
           textFormat: 0,
           textStyle: '',
         },
       ],
-      direction: 'ltr',
-      format: '',
+      direction: 'ltr' as const,
+      format: '' as const,
       indent: 0,
       version: 1,
     },
@@ -49,23 +49,24 @@ function mixedText(...parts: (string | [string])[]) {
         {
           type: 'paragraph',
           children,
-          direction: 'ltr',
-          format: '',
+          direction: 'ltr' as const,
+          format: '' as const,
           indent: 0,
           version: 1,
           textFormat: 0,
           textStyle: '',
         },
       ],
-      direction: 'ltr',
-      format: '',
+      direction: 'ltr' as const,
+      format: '' as const,
       indent: 0,
       version: 1,
     },
   }
 }
 
-type Entry = { year?: string; text: any }
+type LexicalRichText = ReturnType<typeof plainText>
+type Entry = { year?: string; text: LexicalRichText }
 
 async function seed() {
   const payloadConfig = await config

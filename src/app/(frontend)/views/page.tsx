@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 import BackArrow from '@/components/BackArrow/BackArrow'
 import './views.css'
 
@@ -25,13 +26,19 @@ export default function ViewsPage() {
 
   return (
     <div className="views-wrapper">
-      <BackArrow />
-      <h2>views</h2>
-      <img
+      <div className="views-overlay">
+        <BackArrow color="white" />
+        <h2>views</h2>
+      </div>
+      <Image
         src={images[currentImageIndex]}
         alt={`View ${currentImageIndex + 1}`}
         className="views-image"
+        fill
+        sizes="100vw"
+        priority
       />
     </div>
   )
 }
+

@@ -1,0 +1,12 @@
+.uhr-wrapper {
+  padding: 5% 10%;
+  min-height: 100vh;
+  background-color: #efefef;
+}
+.uhr-wrapper h2 {
+  margin-bottom: 10vh;
+}
+.uhr-wrapper p {
+  padding-top: 3vh;
+  text-align: justify;
+}

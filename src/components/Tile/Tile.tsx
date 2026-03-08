@@ -1,17 +1,20 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import './Tile.css'
 
 interface TileProps {
   object: {
-    id: string
+    id: number
     images?: Array<{
       image:
+        | number
         | {
-            url?: string
-            mimeType?: string
+            url?: string | null
+            mimeType?: string | null
           }
         | string
-    }>
+      id?: string | null
+    }> | null
   }
 }
 
@@ -24,7 +27,9 @@ export default function Tile({ object }: TileProps) {
   const image =
     typeof firstImage.image === 'string'
       ? { url: firstImage.image, mimeType: '' }
-      : firstImage.image
+      : typeof firstImage.image === 'number'
+        ? { url: '', mimeType: '' }
+        : firstImage.image
 
   const mediaUrl = image?.url || ''
   const mimeType = image?.mimeType || ''
@@ -44,7 +49,7 @@ export default function Tile({ object }: TileProps) {
             playsInline
           />
         ) : (
-          <img className="tile-image" src={mediaUrl} alt="Artwork" />
+          <Image className="tile-image" src={mediaUrl} alt="Artwork" width={400} height={400} style={{ width: '100%', height: 'auto' }} />
         )}
       </Link>
     </div>

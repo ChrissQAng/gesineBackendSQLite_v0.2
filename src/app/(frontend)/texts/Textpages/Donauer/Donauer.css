@@ -1,0 +1,12 @@
+.donauer-wrapper {
+  padding: 5% 10%;
+  min-height: 100vh;
+  background-color: #efefef;
+}
+.donauer-wrapper h2 {
+  margin-bottom: 10vh;
+}
+.donauer-wrapper p {
+  padding-top: 3vh;
+  text-align: justify;
+}

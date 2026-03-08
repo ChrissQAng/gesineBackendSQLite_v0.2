@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import BackArrow from '@/components/BackArrow/BackArrow'
 import './music.css'
 
@@ -8,7 +9,7 @@ export default async function MusicPage() {
       <BackArrow />
       <h2>120 DEN</h2>
       <figure>
-        <img src="/images/DSC05275_3_web.jpg" alt="120 DEN" />
+        <Image src="/images/DSC05275_3_web.jpg" alt="120 DEN" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
         <figcaption>
           <b>120 DEN</b> by Jörg Obergfell, Kölner Zoo / sculptorscoop
         </figcaption>

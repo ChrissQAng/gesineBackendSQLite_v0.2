@@ -5,12 +5,25 @@ import config from '@/payload.config'
 import BackArrow from '@/components/BackArrow/BackArrow'
 import './about.css'
 
+interface LexicalNode {
+  type: string
+  text?: string
+  format?: number
+  children?: LexicalNode[]
+}
+
+interface LexicalRichText {
+  root?: {
+    children?: LexicalNode[]
+  }
+}
+
 /**
  * Recursively render Lexical richText nodes to React elements.
  * Handles paragraph, text (with italic format), and linebreak nodes.
  */
-function renderLexicalChildren(children: any[]): React.ReactNode[] {
-  return children.map((node: any, i: number) => {
+function renderLexicalChildren(children: LexicalNode[]): React.ReactNode[] {
+  return children.map((node: LexicalNode, i: number) => {
     if (node.type === 'linebreak') {
       return <br key={i} />
     }
@@ -18,10 +31,10 @@ function renderLexicalChildren(children: any[]): React.ReactNode[] {
     if (node.type === 'text') {
       let content: React.ReactNode = node.text
       // Lexical format bitmask: 1 = bold, 2 = italic, 4 = strikethrough, 8 = underline
-      if (node.format & 2) {
+      if ((node.format ?? 0) & 2) {
         content = <i key={i}>{content}</i>
       }
-      if (node.format & 1) {
+      if ((node.format ?? 0) & 1) {
         content = <b key={i}>{content}</b>
       }
       return <React.Fragment key={i}>{content}</React.Fragment>
@@ -36,7 +49,7 @@ function renderLexicalChildren(children: any[]): React.ReactNode[] {
   })
 }
 
-function renderRichText(richText: any): React.ReactNode {
+function renderRichText(richText: string | LexicalRichText): React.ReactNode {
   if (typeof richText === 'string') return richText
   if (!richText?.root?.children) return ''
 
@@ -47,7 +60,7 @@ function renderRichText(richText: any): React.ReactNode {
   }
 
   // Multiple paragraphs: join with <br/>
-  return paragraphs.map((para: any, i: number) => (
+  return paragraphs.map((para: LexicalNode, i: number) => (
     <React.Fragment key={i}>
       {i > 0 && <br />}
       {renderLexicalChildren(para.children || [])}

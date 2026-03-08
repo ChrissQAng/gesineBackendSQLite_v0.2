@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import React from 'react'
 import './home.css'
 
@@ -7,7 +8,7 @@ export default async function HomePage() {
     <div className="home">
       <div className="homeWrapper">
         <h1>Gesine Grundmann</h1>
-        <img src="/images/image.png" alt="Navigation" />
+        <Image src="/images/image.png" alt="Navigation" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
         <Link href="/about" className="about">
           about
         </Link>

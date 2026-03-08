@@ -5,6 +5,7 @@ import config from '@/payload.config'
 import BackArrow from '@/components/BackArrow/BackArrow'
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop'
 import Tile from '@/components/Tile/Tile'
+import type { ArtObject } from '@/payload-types'
 import './works.css'
 
 export default async function WorksPage() {
@@ -25,7 +26,7 @@ export default async function WorksPage() {
       <h2>works</h2>
       <div className="tileGrid">
         {artObjects.docs.map((item) => (
-          <Tile key={item.id} object={item as any} />
+          <Tile key={item.id} object={item as ArtObject} />
         ))}
         {artObjects.docs.length === 0 && <p>No works available</p>}
       </div>

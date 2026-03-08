@@ -1,0 +1,34 @@
+.textpage-wrapper {
+  padding: 5% 10%;
+  min-height: 100vh;
+  background-color: #efefef;
+}
+
+.textpage-wrapper h2 {
+  margin-bottom: 10vh;
+}
+
+.textpage-content p {
+  padding-top: 3vh;
+  text-align: justify;
+}
+
+.textpage-wrapper > p {
+  padding-top: 3vh;
+  text-align: justify;
+}
+
+.textpage-quotations {
+  margin-top: 10vh;
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.textpage-quotations span {
+  width: 4vw;
+}
+
+.copyright {
+  margin-top: 5vh;
+  font-style: italic;
+}
