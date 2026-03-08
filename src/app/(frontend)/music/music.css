@@ -1,0 +1,58 @@
+.music-wrapper {
+  padding: 5% 10%;
+  background-color: #efefef;
+  min-height: 100vh;
+  color: black;
+}
+
+.music-wrapper h2 {
+  color: black;
+}
+
+.music-wrapper .back-arrow {
+  color: black;
+}
+
+.music-wrapper figure {
+  margin: 2rem 0;
+}
+
+.music-wrapper figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+.music-wrapper figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.music-wrapper .table-item {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.music-wrapper .table-item p:first-child {
+  width: 20%;
+  min-width: 100px;
+}
+
+.music-wrapper .table-item p:last-child {
+  width: 80%;
+}
+
+.music-wrapper .table-item a {
+  color: black;
+}
+
+.video-wrapper {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  height: auto;
+  min-height: 400px;
+}

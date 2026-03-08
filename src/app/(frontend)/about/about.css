@@ -1,0 +1,100 @@
+.about-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.background-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  color: black;
+  padding: 5% 0 50% 0;
+  max-width: 80%;
+  margin: 0 auto;
+  height: auto;
+  scrollbar-width: none;
+  overflow-y: auto;
+}
+
+@media (min-height: 100vh) {
+  .content {
+    max-height: 100vh;
+  }
+}
+
+h2 {
+  padding-bottom: 10vh;
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding-bottom: 1vh;
+  padding-top: 5vh;
+}
+
+/* Two-column layout for entries with year */
+.table-item {
+  width: 100%;
+  display: flex;
+  margin-bottom: 0;
+}
+
+.table-item p:first-child {
+  width: 20%;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.table-item .entry-text {
+  width: 80%;
+}
+
+/* Full-width layout for entries without year */
+.table-item.no-year {
+  display: block;
+}
+
+.table-item.no-year .entry-text {
+  width: 100%;
+}
+
+.table-item p,
+.table-item .entry-text {
+  margin: 0;
+  padding: 0;
+}
+
+span {
+  font-weight: 200;
+  font-size: 1rem;
+}
+
+.back-arrow {
+  position: fixed;
+  top: 3%;
+  right: 5%;
+  color: black;
+  text-decoration: none;
+  font-size: 2rem;
+  z-index: 100;
+}
+
+.back-arrow:hover {
+  opacity: 0.7;
+}

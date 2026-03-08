@@ -1,0 +1,21 @@
+.views-wrapper {
+  padding: 5% 10%;
+  background-color: #efefef;
+  min-height: 100vh;
+}
+
+.views-wrapper h2 {
+  color: black;
+}
+
+.views-wrapper .back-arrow {
+  color: black;
+}
+
+.views-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  transition: opacity 0.5s ease-in-out;
+}

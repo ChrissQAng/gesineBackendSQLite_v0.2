@@ -1,0 +1,33 @@
+.detail-wrapper {
+  padding: 5% 10%;
+  background-color: #efefef;
+  min-height: 100vh;
+}
+
+.detail-wrapper .back-arrow {
+  color: black;
+}
+
+.detail {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.detail img,
+.detail video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.detail video {
+  width: 100%;
+}
+
+.detail .description {
+  color: black;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 2rem;
+}

@@ -1,0 +1,77 @@
+.contact-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.contact-wrapper .back-arrow {
+  color: white;
+}
+
+.contact-wrapper .imprint-link {
+  color: white;
+  padding-left: 10vw;
+  position: absolute;
+  bottom: 5%;
+}
+
+.fire-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -1;
+}
+
+.contact-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  max-width: 80%;
+  margin: 0 auto;
+  height: auto;
+  scrollbar-width: none;
+  overflow-y: auto;
+}
+
+.contact-content h4 {
+  font-size: 1.5rem;
+  padding-top: 5vh;
+  padding-bottom: 57vh;
+  color: white;
+}
+
+.contact-content h4 a {
+  color: white;
+  text-decoration: none;
+}
+
+.contact-content h4 a:hover {
+  opacity: 0.7;
+}
+
+.contact-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-insta {
+  padding-left: 62vw;
+}
+
+@media (min-height: 100vh) {
+  .contact-content {
+    max-height: 100vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-insta {
+    padding-left: 50vw;
+  }
+}
