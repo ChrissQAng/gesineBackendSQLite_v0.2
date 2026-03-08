@@ -78,5 +78,3 @@ To deploy on your Apache server without Docker:
 
 4. **Frontend Config**:
    Ensure `VITE_SWITCH_LOCAL_SERVER` is empty (`""`) in production so requests go to `/api/...` (relative path), which Apache handles.
-
-...
