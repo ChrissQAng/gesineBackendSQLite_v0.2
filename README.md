@@ -3,6 +3,7 @@
 This is the backend for the Gesine Grundmann website, built with PayloadCMS 3.0 and SQLite.
 
 ## Features
+
 - **SQLite Database**: Self-contained `local.db` file. No external database server required.
 - **Media Support**: Uploads for Images AND Videos.
 - **Rich Text**: Robust editor for descriptions.
@@ -11,6 +12,7 @@ This is the backend for the Gesine Grundmann website, built with PayloadCMS 3.0 
 ## Getting Started
 
 1. **Install Dependencies**:
+
    ```bash
    npm install
    ```
@@ -22,20 +24,25 @@ This is the backend for the Gesine Grundmann website, built with PayloadCMS 3.0 
    Open [http://localhost:3000/admin](http://localhost:3000/admin) to manage content.
 
 ## Deployment (Apache + Node.js)
+
 To deploy on your Apache server without Docker:
 
 1. **Build the Backend**:
+
    ```bash
    npm run build
    npm start
    ```
+
    (Use a process manager like PM2 to keep it running: `pm2 start npm --name "gesine-backend" -- start`)
 
 2. **Frontend Build**:
+
    ```bash
    cd ../frontend
    npm run build
    ```
+
    Copy the `dist` folder to your Apache web root.
 
 3. **Apache Configuration (Reverse Proxy)**:
@@ -71,3 +78,5 @@ To deploy on your Apache server without Docker:
 
 4. **Frontend Config**:
    Ensure `VITE_SWITCH_LOCAL_SERVER` is empty (`""`) in production so requests go to `/api/...` (relative path), which Apache handles.
+
+...
