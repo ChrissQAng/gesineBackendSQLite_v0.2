@@ -2,60 +2,54 @@
   padding: 5% 10%;
   background-color: #efefef;
   min-height: 100vh;
-  color: black;
 }
 
-.imprint-wrapper h2 {
-  color: black;
-}
-
-.imprint-wrapper .back-arrow {
+.imprint-wrapper a {
   color: black;
 }
 
 .imprint-wrapper p {
-  margin-bottom: 1rem;
+  padding-bottom: 3%;
 }
 
-.imprint-wrapper .fine-print {
-  font-size: 0.8rem;
-  margin-top: 2rem;
-  line-height: 1.6;
+.fine-print {
+  text-align: justify;
 }
 
 .imprint-angerer {
-  margin-top: 3rem;
+  background-color: black;
+  padding: 2.5%;
+  margin: 5vh auto;
+  border-radius: 20px;
+  width: fit-content;
 }
 
-.imprint-angerer .angerer {
-  font-weight: bold;
-  margin-bottom: 1rem;
+.imprint-angerer > * {
+  font-size: 1.3rem;
+  color: white;
 }
 
-.imprint-angerer ul {
-  margin-left: 1rem;
-  margin-bottom: 1rem;
+.imprint-angerer li {
+  font-size: 1.1rem;
 }
 
-.imprint-angerer ul li {
-  list-style: disc;
-  margin-left: 1rem;
-}
-
-.imprint-contact {
-  margin-top: 3rem;
-}
-
-.imprint-contact h3 {
-  color: black;
+.angerer {
+  font-size: 1.6rem;
 }
 
 .imprint-contact a {
   display: block;
-  color: black;
-  margin-bottom: 0.5rem;
+  padding: 2%;
 }
 
-.imprint-contact a:hover {
-  opacity: 0.7;
+@media (min-width: 441px) and (max-width: 768px) {
+  .imprint-wrapper p {
+    font-size: 0.8rem;
+  }
+  .imprint-angerer li {
+    font-size: 0.7rem;
+  }
+  .angerer {
+    font-size: 1.2rem !important;
+  }
 }
