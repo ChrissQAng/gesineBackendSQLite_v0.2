@@ -27,18 +27,22 @@
   margin-bottom: 2%;
 }
 
-.tile-wrapper img {
+.tile-wrapper img,
+.tile-wrapper video {
   max-width: 300px;
   height: auto;
   transition: transform 0.3s ease;
 }
 
-.tile-wrapper img:hover {
+.tile-wrapper img:hover,
+.tile-wrapper video:hover {
   transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
-  .tile-wrapper img {
+  .tile-wrapper img,
+  .tile-wrapper video {
     max-width: 100%;
   }
 }
+

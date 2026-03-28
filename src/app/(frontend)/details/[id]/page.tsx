@@ -37,34 +37,47 @@ export default async function DetailsPage({ params }: PageProps) {
     <div className="detail-wrapper">
       <BackArrow />
       <div className="detail">
-        {artObject && artObject.images ? (
-          artObject.images.map((item, index) => {
-            const image = item.image as Media
-            const mediaUrl = image?.url || ''
-            const mimeType = image?.mimeType || ''
-            const isVideo = mimeType?.startsWith('video/')
-
-            return isVideo ? (
-              <video src={mediaUrl} key={index} controls autoPlay loop muted playsInline />
-            ) : (
-              <Image src={mediaUrl} key={index} alt={`Artwork ${index + 1}`} width={800} height={600} style={{ width: '100%', height: 'auto' }} />
-            )
-          })
+        {artObject && artObject.images && artObject.images.length > 0 ? (
+          <>
+            {(() => {
+              const first = artObject.images[0]
+              const image = first.image as Media
+              const mediaUrl = image?.url || ''
+              const mimeType = image?.mimeType || ''
+              const isVideo = mimeType?.startsWith('video/')
+              return isVideo ? (
+                <video src={mediaUrl} key={0} controls autoPlay loop muted playsInline />
+              ) : (
+                <Image src={mediaUrl} key={0} alt="Artwork 1" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
+              )
+            })()}
+            {artObject.description && (
+              <div
+                className="description"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    typeof artObject.description === 'string'
+                      ? artObject.description
+                      : ((artObject.description as LexicalDescription)?.root?.children
+                           ?.map((child: LexicalTextNode) => child.children?.map((c: LexicalTextNode) => c.text).join('') || '')
+                           .join('<br/>')) || '',
+                }}
+              />
+            )}
+            {artObject.images.slice(1).map((item, index) => {
+              const image = item.image as Media
+              const mediaUrl = image?.url || ''
+              const mimeType = image?.mimeType || ''
+              const isVideo = mimeType?.startsWith('video/')
+              return isVideo ? (
+                <video src={mediaUrl} key={index + 1} controls autoPlay loop muted playsInline />
+              ) : (
+                <Image src={mediaUrl} key={index + 1} alt={`Artwork ${index + 2}`} width={800} height={600} style={{ width: '100%', height: 'auto' }} />
+              )
+            })}
+          </>
         ) : (
           <p>No images available</p>
-        )}
-        {artObject && artObject.description && (
-          <div
-            className="description"
-            dangerouslySetInnerHTML={{
-              __html:
-                typeof artObject.description === 'string'
-                  ? artObject.description
-                  : ((artObject.description as LexicalDescription)?.root?.children
-                       ?.map((child: LexicalTextNode) => child.children?.map((c: LexicalTextNode) => c.text).join('') || '')
-                       .join('<br/>')) || '',
-            }}
-          />
         )}
       </div>
     </div>

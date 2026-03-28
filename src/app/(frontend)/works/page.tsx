@@ -15,7 +15,7 @@ export default async function WorksPage() {
   // Fetch all art objects ordered by orderOfObjects
   const artObjects = await payload.find({
     collection: 'artObjects',
-    sort: 'orderOfObjects',
+    sort: '_order',
     limit: 0,
   })
 

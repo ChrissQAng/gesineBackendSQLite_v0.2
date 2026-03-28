@@ -168,6 +168,7 @@ export interface Media {
  */
 export interface ArtObject {
   id: number;
+  _order?: string | null;
   images?:
     | {
         image: number | Media;
@@ -190,7 +191,6 @@ export interface ArtObject {
     [k: string]: unknown;
   };
   vorangestellt: boolean;
-  orderOfObjects?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -363,6 +363,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "artObjects_select".
  */
 export interface ArtObjectsSelect<T extends boolean = true> {
+  _order?: T;
   images?:
     | T
     | {
@@ -371,7 +372,6 @@ export interface ArtObjectsSelect<T extends boolean = true> {
       };
   description?: T;
   vorangestellt?: T;
-  orderOfObjects?: T;
   updatedAt?: T;
   createdAt?: T;
 }

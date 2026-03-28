@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 export const ArtObjects: CollectionConfig = {
   slug: 'artObjects',
+  orderable: true,
   access: {
     read: () => true,
   },
@@ -35,10 +36,6 @@ export const ArtObjects: CollectionConfig = {
       type: 'checkbox',
       defaultValue: false,
       required: true, // Checkboxes are usually required to have a boolean value
-    },
-    {
-      name: 'orderOfObjects',
-      type: 'number',
     },
   ],
 }

@@ -1,80 +1,146 @@
-# Gesine Backend (PayloadCMS 3.0 + SQLite)
+# Gesine Grundmann Website (Next.js 15 + PayloadCMS 3.75 + SQLite)
 
-This is the backend for the Gesine Grundmann website, built with PayloadCMS 3.0 and SQLite.
+Full-Stack-Anwendung: Next.js 15 rendert die öffentlichen Seiten per SSR, PayloadCMS 3.75 liefert das Admin-Panel und die API. Daten liegen in einer SQLite-Datei — kein externer Datenbankserver nötig.
 
 ## Features
 
-- **SQLite Database**: Self-contained `local.db` file. No external database server required.
-- **Media Support**: Uploads for Images AND Videos.
-- **Rich Text**: Robust editor for descriptions.
-- **Headless CMS**: Serves content via API to the React frontend.
+- **SQLite Database**: Selbstständige `local.db`-Datei, kein DB-Server nötig
+- **Media Support**: Uploads für Bilder und Videos
+- **Rich Text**: Lexical-Editor für Beschreibungen
+- **SSR Frontend + Admin Panel**: Alles in einer Anwendung auf Port 3000
 
-## Getting Started
+## Lokale Entwicklung
 
-1. **Install Dependencies**:
+```bash
+pnpm install
+cp .env.example .env   # DATABASE_URL und PAYLOAD_SECRET anpassen
+pnpm dev
+```
 
-   ```bash
-   npm install
-   ```
+- Frontend: http://localhost:3000
+- Admin-Panel: http://localhost:3000/admin
 
-2. **Start Development Server**:
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000/admin](http://localhost:3000/admin) to manage content.
+## Deployment auf Debian 12 mit PM2
 
-## Deployment (Apache + Node.js)
+### 1. Server vorbereiten
 
-To deploy on your Apache server without Docker:
+```bash
+# Node.js 20 LTS installieren
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
+sudo apt-get install -y nodejs
 
-1. **Build the Backend**:
+# pnpm und PM2 global installieren
+sudo npm install -g pnpm pm2
+```
 
-   ```bash
-   npm run build
-   npm start
-   ```
+### 2. Projekt auf den Server bringen
 
-   (Use a process manager like PM2 to keep it running: `pm2 start npm --name "gesine-backend" -- start`)
+```bash
+# Beispiel: Projekt nach /var/www/gesine klonen oder kopieren
+sudo mkdir -p /var/www/gesine
+cd /var/www/gesine
 
-2. **Frontend Build**:
+# Per Git:
+git clone <REPO_URL> .
 
-   ```bash
-   cd ../frontend
-   npm run build
-   ```
+# Oder per rsync vom lokalen Rechner:
+# rsync -avz --exclude node_modules --exclude .next --exclude .env ./ user@server:/var/www/gesine/
+```
 
-   Copy the `dist` folder to your Apache web root.
+### 3. Konfiguration
 
-3. **Apache Configuration (Reverse Proxy)**:
-   Configure Apache to serve the static frontend files, but proxy `/api` and `/admin` requests to the Node.js backend running on port 3000.
+```bash
+cd /var/www/gesine
+cp .env.example .env
+```
 
-   ```apache
-   <VirtualHost *:80>
-       ServerName yourdomain.com
-       DocumentRoot /var/www/html/frontend-dist
+`.env` anpassen:
 
-       # Enable Proxy
-       ProxyPreserveHost On
-       ProxyPass /api http://localhost:3000/api
-       ProxyPassReverse /api http://localhost:3000/api
-       ProxyPass /admin http://localhost:3000/admin
-       ProxyPassReverse /admin http://localhost:3000/admin
+```env
+DATABASE_URL=file:./local.db
+PAYLOAD_SECRET=ein-sicherer-zufallsstring
+```
 
-       # Serve static frontend
-       <Directory /var/www/html/frontend-dist>
-           Options Indexes FollowSymLinks
-           AllowOverride All
-           Require all granted
-           RewriteEngine on
-           # Don't rewrite files or directories
-           RewriteCond %{REQUEST_FILENAME} -f [OR]
-           RewriteCond %{REQUEST_FILENAME} -d
-           RewriteRule ^ - [L]
-           # Rewrite everything else to index.html to allow html5 routing
-           RewriteRule ^ index.html [L]
-       </Directory>
-   </VirtualHost>
-   ```
+### 4. Build
 
-4. **Frontend Config**:
-   Ensure `VITE_SWITCH_LOCAL_SERVER` is empty (`""`) in production so requests go to `/api/...` (relative path), which Apache handles.
+```bash
+pnpm install
+pnpm build
+```
+
+### 5. Mit PM2 starten
+
+```bash
+pm2 start pnpm --name "gesine" -- start
+pm2 save
+pm2 startup   # Folge der Anweisung, damit PM2 nach Reboot automatisch startet
+```
+
+Nützliche PM2-Befehle:
+
+```bash
+pm2 status            # Status anzeigen
+pm2 logs gesine       # Logs anzeigen
+pm2 restart gesine    # Neustarten
+pm2 stop gesine       # Stoppen
+```
+
+### 6. Apache 2 als Reverse Proxy
+
+```bash
+sudo apt-get install -y apache2
+sudo a2enmod proxy proxy_http proxy_wstunnel rewrite headers
+```
+
+Konfiguration unter `/etc/apache2/sites-available/gesine.conf`:
+
+```apache
+<VirtualHost *:80>
+    ServerName yourdomain.com
+
+    # Für Media-Uploads
+    LimitRequestBody 104857600
+
+    ProxyPreserveHost On
+    ProxyRequests Off
+
+    # WebSocket-Support (für HMR / Admin-Live-Updates)
+    RewriteEngine On
+    RewriteCond %{HTTP:Upgrade} websocket [NC]
+    RewriteCond %{HTTP:Connection} upgrade [NC]
+    RewriteRule /(.*) ws://127.0.0.1:3000/$1 [P,L]
+
+    # Alle Requests an Next.js weiterleiten
+    ProxyPass / http://127.0.0.1:3000/
+    ProxyPassReverse / http://127.0.0.1:3000/
+
+    RequestHeader set X-Forwarded-Proto "http"
+</VirtualHost>
+```
+
+Aktivieren:
+
+```bash
+sudo a2ensite gesine.conf
+sudo a2dissite 000-default.conf
+sudo apache2ctl configtest && sudo systemctl reload apache2
+```
+
+### 7. SSL mit Let's Encrypt (optional, empfohlen)
+
+```bash
+sudo apt-get install -y certbot python3-certbot-apache
+sudo certbot --apache -d yourdomain.com
+```
+
+Nach SSL-Aktivierung den Header anpassen (`RequestHeader set X-Forwarded-Proto "https"`).
+
+### Update-Workflow
+
+```bash
+cd /var/www/gesine
+git pull
+pnpm install
+pnpm build
+pm2 restart gesine
+```

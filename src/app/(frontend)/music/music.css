@@ -14,7 +14,7 @@
 }
 
 .music-wrapper figure {
-  margin: 2rem 0;
+  margin: 0 0 0.5rem 0;
 }
 
 .music-wrapper figure img {
@@ -23,13 +23,18 @@
 }
 
 .music-wrapper figcaption {
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   font-size: 0.9rem;
+  margin-bottom: 1rem;
 }
 
 .music-wrapper .table-item {
   display: flex;
-  margin-bottom: 1rem;
+  margin-bottom: 0.1rem;
+}
+
+.music-wrapper .table-item p {
+  margin: 0;
 }
 
 .music-wrapper .table-item p:first-child {
@@ -39,6 +44,7 @@
 
 .music-wrapper .table-item p:last-child {
   width: 80%;
+  text-align: justify;
 }
 
 .music-wrapper .table-item a {
@@ -55,4 +61,28 @@
   aspect-ratio: 16/9;
   height: auto;
   min-height: 400px;
+}
+
+@media (max-width: 768px) {
+  .music-wrapper {
+    padding: 5% 5%;
+  }
+
+  .music-wrapper .table-item {
+    flex-direction: column;
+  }
+
+  .music-wrapper .table-item p:first-child {
+    width: 100%;
+    min-width: unset;
+    font-weight: bold;
+  }
+
+  .music-wrapper .table-item p:last-child {
+    width: 100%;
+  }
+
+  .video-wrapper iframe {
+    min-height: 200px;
+  }
 }

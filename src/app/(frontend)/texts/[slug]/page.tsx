@@ -55,7 +55,7 @@ function UhrContent() {
       </p>
       <p>
         Von der Finsterfarbe Schwarz wird auch der Schriftzug umfasst, welcher
-        der Ausstellung ihren Titel verleiht. „GENUGGEKRIEGT" – mit etwas Mühe
+        der Ausstellung ihren Titel verleiht. &bdquo;GENUGGEKRIEGT&ldquo; – mit etwas Mühe
         entziffern wir dieses Wortgebilde. Auf den ersten Blick scheint auch
         hier ein ökonomischer Sachverhalt angesprochen. Eingebunden ist jedoch
         auch der Krieg und gemahnt momentan unmissverständlich an das von
@@ -448,7 +448,7 @@ function AberleContent() {
           eigentlich jedes einigermaßen flache Objekt mit einem Loch in der
           Mitte. Der Sound, der durch die, mit feinen Gesteinspartikeln
           beschichtete, Kunststoffoberfläche entstünde, gefiele wohl dem
-          „Minister für Kratzen, Kreischen und Dröhnen" aus einem frühen
+          &bdquo;Minister für Kratzen, Kreischen und Dröhnen&ldquo; aus einem frühen
           LUSTIGEN TASCHENBUCH von Walt Disney (2), unter dessen Regie alle
           möglichen Störgeräusche erzeugt und in alle Welt transportiert werden.
           I Serenade ist geradezu eine Allegorie für Klang und Musik als
@@ -549,13 +549,13 @@ function DonauerContent() {
         ist. Diese found-objects werden im Verbund auf einem Trägergrund, der
         sich vertikal in den Raum stellt, zum bildhauerischen Artefakt. Das
         Material bringt seine eigene Information mit, die hier einerseits
-        wissenschaftlich deutbar, aber auch im reinen „Sehen" einen bildwerten
+        wissenschaftlich deutbar, aber auch im reinen &bdquo;Sehen&ldquo; einen bildwerten
         Mehrwert generiert.
       </p>
       <p>
         Eine Ökonomie des Materials findet sich auch in der Arbeit Eisberg –
         hier schieben sich Styrodurplatten so ineinander, das sie den Eindruck
-        des „Gewachsen-seins" hinterlassen, fliessend, Schicht um Schicht.
+        des &bdquo;Gewachsen-seins&ldquo; hinterlassen, fliessend, Schicht um Schicht.
         Ähnlich wie bei Territories kommen hier zwei unterschiedliche Bewegungen
         zusammen: Der formalen Setzung folgt die Bewegung im Material.
       </p>
@@ -598,13 +598,13 @@ function HeymContent() {
         Zwischen Kampfstern Galactica und Museum Koenig war noch eine Lücke zu
         füllen, die im Alltag beginnt und im zeitgenössischen
         Ausstellungskontext endet. Gesine Grundmann hat diesen Zusammenhang
-        schnell erkannt und gleich gehandelt. 2007 erweckt sie den „Großen
-        Rheinischen Tiger" zum Leben um ihm ein Dasein in der Asservatenkammer
+        schnell erkannt und gleich gehandelt. 2007 erweckt sie den &bdquo;Großen
+        Rheinischen Tiger&ldquo; zum Leben um ihm ein Dasein in der Asservatenkammer
         zu ersparen, ganz so, als führte sie mit den aneinander genähten
         Schaffellen ein Beweismittel vor, um für die ausgestorben geglaubte Art
         lebendiger Seelen zu werben. Hier steckt zwar der Witz im Fell und die
         Pointe liegt außerhalb des Konzepts, aber das ist erst der Anfang. Denn
-        „Grundmann" und „grundständig" ist schließlich Tautologie genug, das
+        &bdquo;Grundmann&ldquo; und &bdquo;grundständig&ldquo; ist schließlich Tautologie genug, das
         reicht für ein Leben. Anders als in vielen zeitgenössischen Kunstsparten
         üblich, wird der Wahrnehmung hier nicht die Rolle eines
         sklavisch-funktionalen Konzept-Erfüllungsgehilfen zugewiesen, sondern
@@ -628,7 +628,7 @@ function HeymContent() {
       </p>
       <p>
         Ganz ähnlich verhält es sich mit dem auf den Sockel gehievten Gemüse (
-        „Gemüsehaufen" 2010). Es kann jeglichen Anflug von Post-Pop Gehabe
+        &bdquo;Gemüsehaufen&ldquo; 2010). Es kann jeglichen Anflug von Post-Pop Gehabe
         souverän in den Haufen abschütteln, in dem es steckt, der beliebte
         Gegensatz von Massenprodukt und Individuum ist dabei längst überwunden.
         Nicht zugunsten einer peinlich genauen Nachahmung nach der Natur,
