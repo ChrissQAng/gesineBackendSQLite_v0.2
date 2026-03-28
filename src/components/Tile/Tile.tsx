@@ -49,7 +49,7 @@ export default function Tile({ object }: TileProps) {
             playsInline
           />
         ) : (
-          <Image className="tile-image" src={mediaUrl} alt="Artwork" width={400} height={400} style={{ width: '100%', height: 'auto' }} />
+          <Image className="tile-image" src={mediaUrl} alt="Artwork" width={400} height={400} />
         )}
       </Link>
     </div>

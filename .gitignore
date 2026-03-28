@@ -51,3 +51,7 @@ node_modules/
 
 # database
 local.db
+
+#vsc
+
+settings.json
