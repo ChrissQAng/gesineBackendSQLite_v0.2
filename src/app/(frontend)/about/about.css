@@ -1,6 +1,6 @@
 .about-wrapper {
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
 }
 
@@ -31,7 +31,7 @@
 
 @media (min-height: 100vh) {
   .content {
-    max-height: 100vh;
+    max-height: 100dvh;
   }
 }
 
