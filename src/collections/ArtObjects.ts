@@ -15,7 +15,7 @@ export const ArtObjects: CollectionConfig = {
         plural: 'Media',
       },
       type: 'array',
-      maxRows: 5,
+      maxRows: 15,
       fields: [
         {
           name: 'image',

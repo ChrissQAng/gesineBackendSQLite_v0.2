@@ -4,6 +4,7 @@ import Image from 'next/image'
 
 import config from '@/payload.config'
 import BackArrow from '@/components/BackArrow/BackArrow'
+import DetailHero from '@/components/DetailHero/DetailHero'
 import type { Media } from '@/payload-types'
 import './details.css'
 
@@ -39,31 +40,36 @@ export default async function DetailsPage({ params }: PageProps) {
       <div className="detail">
         {artObject && artObject.images && artObject.images.length > 0 ? (
           <>
-            {(() => {
-              const first = artObject.images[0]
-              const image = first.image as Media
-              const mediaUrl = image?.url || ''
-              const mimeType = image?.mimeType || ''
-              const isVideo = mimeType?.startsWith('video/')
-              return isVideo ? (
-                <video src={mediaUrl} key={0} controls autoPlay loop muted playsInline />
-              ) : (
-                <Image src={mediaUrl} key={0} alt="Artwork 1" width={800} height={600} style={{ width: '100%', height: 'auto' }} />
-              )
-            })()}
-            {artObject.description && (
-              <div
-                className="description"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    typeof artObject.description === 'string'
-                      ? artObject.description
-                      : ((artObject.description as LexicalDescription)?.root?.children
-                           ?.map((child: LexicalTextNode) => child.children?.map((c: LexicalTextNode) => c.text).join('') || '')
-                           .join('<br/>')) || '',
-                }}
-              />
-            )}
+            <DetailHero
+              description={
+                artObject.description ? (
+                  <div
+                    className="description"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        typeof artObject.description === 'string'
+                          ? artObject.description
+                          : ((artObject.description as LexicalDescription)?.root?.children
+                               ?.map((child: LexicalTextNode) => child.children?.map((c: LexicalTextNode) => c.text).join('') || '')
+                               .join('<br/>')) || '',
+                    }}
+                  />
+                ) : null
+              }
+            >
+              {(() => {
+                const first = artObject.images[0]
+                const image = first.image as Media
+                const mediaUrl = image?.url || ''
+                const mimeType = image?.mimeType || ''
+                const isVideo = mimeType?.startsWith('video/')
+                return isVideo ? (
+                  <video className="detail-first-media" src={mediaUrl} controls autoPlay loop muted playsInline />
+                ) : (
+                  <Image className="detail-first-media" src={mediaUrl} alt="Artwork 1" width={800} height={600} style={{ width: 'auto', height: 'auto' }} />
+                )
+              })()}
+            </DetailHero>
             {artObject.images.slice(1).map((item, index) => {
               const image = item.image as Media
               const mediaUrl = image?.url || ''

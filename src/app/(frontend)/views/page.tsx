@@ -27,7 +27,7 @@ export default function ViewsPage() {
   return (
     <div className="views-wrapper">
       <div className="views-overlay">
-        <BackArrow color="white" />
+        <BackArrow />
         <h2>views</h2>
       </div>
       <Image

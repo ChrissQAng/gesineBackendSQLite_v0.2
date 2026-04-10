@@ -3,6 +3,7 @@ import React from 'react'
 
 import config from '@/payload.config'
 import BackArrow from '@/components/BackArrow/BackArrow'
+import ScrollRestore from '@/components/ScrollRestore/ScrollRestore'
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop'
 import Tile from '@/components/Tile/Tile'
 import type { ArtObject } from '@/payload-types'
@@ -22,6 +23,7 @@ export default async function WorksPage() {
   return (
     <div className="worksWrapper">
       <BackArrow />
+      <ScrollRestore />
       <ScrollToTop />
       <h2>works</h2>
       <div className="tileGrid">
