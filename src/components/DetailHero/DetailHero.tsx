@@ -1,13 +1,14 @@
 'use client'
 
-import { useRef, useState, useCallback, type ReactNode } from 'react'
+import { useState, useCallback, type ReactNode } from 'react'
 
 interface DetailHeroProps {
   description: ReactNode
   children: ReactNode
+  rest?: ReactNode
 }
 
-export default function DetailHero({ description, children }: DetailHeroProps) {
+export default function DetailHero({ description, children, rest }: DetailHeroProps) {
   const [width, setWidth] = useState<number | undefined>(undefined)
   const mediaRef = useCallback((node: HTMLDivElement | null) => {
     if (!node) return
@@ -41,6 +42,11 @@ export default function DetailHero({ description, children }: DetailHeroProps) {
       <div className="description-wrap" style={width ? { width: `${width}px` } : undefined}>
         {description}
       </div>
+      {rest && (
+        <div className="detail-rest" style={width ? { width: `${width}px` } : undefined}>
+          {rest}
+        </div>
+      )}
     </div>
   )
 }

@@ -56,6 +56,21 @@ export default async function DetailsPage({ params }: PageProps) {
                   />
                 ) : null
               }
+              rest={
+                <>
+                  {artObject.images.slice(1).map((item, index) => {
+                    const image = item.image as Media
+                    const mediaUrl = image?.url || ''
+                    const mimeType = image?.mimeType || ''
+                    const isVideo = mimeType?.startsWith('video/')
+                    return isVideo ? (
+                      <video src={mediaUrl} key={index + 1} controls autoPlay loop muted playsInline />
+                    ) : (
+                      <Image src={mediaUrl} key={index + 1} alt={`Artwork ${index + 2}`} width={800} height={600} style={{ width: '100%', height: 'auto' }} />
+                    )
+                  })}
+                </>
+              }
             >
               {(() => {
                 const first = artObject.images[0]
@@ -70,17 +85,6 @@ export default async function DetailsPage({ params }: PageProps) {
                 )
               })()}
             </DetailHero>
-            {artObject.images.slice(1).map((item, index) => {
-              const image = item.image as Media
-              const mediaUrl = image?.url || ''
-              const mimeType = image?.mimeType || ''
-              const isVideo = mimeType?.startsWith('video/')
-              return isVideo ? (
-                <video src={mediaUrl} key={index + 1} controls autoPlay loop muted playsInline />
-              ) : (
-                <Image src={mediaUrl} key={index + 1} alt={`Artwork ${index + 2}`} width={800} height={600} style={{ width: '100%', height: 'auto' }} />
-              )
-            })}
           </>
         ) : (
           <p>No images available</p>
